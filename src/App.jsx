@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Web3 from 'web3';
 import { SwisstronikPlugin } from '@swisstronik/web3-plugin-swisstronik';
-import ABI from './constants/index'; // Contract ABI
+import ABI from './constants/index';
 
 const emojiDisplay = {
   confetti: '🎉',
@@ -18,7 +18,7 @@ function App() {
   const [guessedEmoji, setGuessedEmoji] = useState('confetti');
   const [spinsRemaining, setSpinsRemaining] = useState(0);
   const [winnings, setWinnings] = useState(0);
-  const [spinning, setSpinning] = useState(false); // Track the spin state
+  const [spinning, setSpinning] = useState(false);
   const [winningEmoji, setWinningEmoji] = useState(null);
 
   // Initialize web3 and the contract
@@ -42,7 +42,7 @@ function App() {
 
   // Start a game
   async function startGame() {
-    const pricePerSpin = 0.001; // Reduced price per spin for testing
+    const pricePerSpin = 0.001;
     await contract.methods
       .startGame(web3.utils.toWei(stake, 'ether'), pricePerSpin)
       .send({ from: userAddress });
@@ -64,7 +64,7 @@ function App() {
 
     setTimeout(() => {
       setSpinning(false);
-    }, 2000); // Simulate spin duration
+    }, 2000);
   }
 
   // Stop the game
@@ -99,7 +99,7 @@ function App() {
               </p>
             </div>
 
-            {/* Top 60% Section: Spinning Emojis */}
+            {/* Top Section: Spinning Emojis */}
             <div className="relative h-60 mb-6 flex items-center justify-center">
               {spinning ? (
                 <div className="animate-spin-slow rounded-full border-4 border-dashed h-48 w-48">
@@ -119,7 +119,7 @@ function App() {
               )}
             </div>
 
-            {/* Bottom 40% Section: User Inputs */}
+            {/* Bottom Section: User Inputs */}
             <div className="mb-6">
               <h2 className="block text-left text-gray-600 mb-2">
                 Stake (ETH):

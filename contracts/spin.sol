@@ -13,14 +13,14 @@ contract Lotto3 {
     mapping(string => uint) public emojiMultipliers;
 
     constructor() {
-        // Initialize emoji multipliers (using names instead of actual emoji)
+        // Initialize some emoji multipliers
         emojiMultipliers["confetti"] = 2; // 🎉
         emojiMultipliers["clover"] = 3; // 🍀
         emojiMultipliers["diamond"] = 5; // 💎
         emojiMultipliers["grapes"] = 4; // 🍇
     }
 
-    // Start a game with a specific stake
+    // Start with a specific stake
     function startGame(uint stake, uint pricePerSpin) external {
         require(!games[msg.sender].isActive, "Game already active");
         uint spins = stake / pricePerSpin;
@@ -85,6 +85,6 @@ contract Lotto3 {
         payable(msg.sender).transfer(amount);
     }
 
-    // Fallback function to allow contract to accept ETH
+    // Fallback function to allow contract to accept ETH in case this is implmented
     receive() external payable {}
 }
